@@ -25,21 +25,19 @@ class DestinasiController extends Controller
         $destinasi = Destinasi::create($request->validated());
         return response()->json($destinasi, 201);
     }
-
-    // Show the form for editing the specified resource.
+    // menampilkan data destinasi berdasarkan request
     public function show(Destinasi $destinasi, $request)
     {
         return response()->json($destinasi->load('destinasi'));
     }
 
-    // Update the specified resource in storage.
+    // mengupdate data destinasi
     public function update(UpdateDestinasiRequest $request, Destinasi $destinasi)
     {
         $destinasi->update($request->validated());
         return response()->json($destinasi);
     }
-
-    // Remove the specified resource from storage.
+    //menhapus data destinasi
     public function destroy(Destinasi $destinasi)
     {
         $destinasi->delete();
