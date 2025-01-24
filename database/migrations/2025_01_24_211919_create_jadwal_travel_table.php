@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('destinasi', 100);
             $table->date('tanggal')->comment('Tanggal keberangkatan');
             $table->time('waktu')->comment('Waktu keberangkatan');
-            $table->integer('kuota_penumpang');
+            $table->integer('kuota');
             $table->double('harga_tiket', 10, 2)->comment('Harga tiket per penumpang');
             $table->timestamps();
         });

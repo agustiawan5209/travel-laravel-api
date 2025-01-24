@@ -18,7 +18,7 @@ class ValidasiKuotaController extends Controller
         }
         // cek apakah kuota travel sudah habis
         if ($jadwalTravel->kuota <= 0) {
-            return response()->json(['message' => 'Kuota penuh'], 400);
+            return response()->json(['message' => 'Kuota Penumpang penuh'], 400);
         }
 
         // Decrease the kuota by 1
