@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('destinasis', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->comment('Nama destinasi');
+            $table->string('image')->comment('Gambar destinasi');
+            $table->string('nama',100)->comment('Nama destinasi');
+            $table->string('deskripsi',100)->comment('Nama destinasi');
             $table->timestamps();
         });
     }

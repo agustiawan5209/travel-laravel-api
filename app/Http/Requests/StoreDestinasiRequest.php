@@ -11,7 +11,7 @@ class StoreDestinasiRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreDestinasiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'nama' => 'required|string|max:255',
+            'deskripsi' => 'required|string',
         ];
     }
 }

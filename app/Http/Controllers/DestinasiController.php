@@ -22,22 +22,24 @@ class DestinasiController extends Controller
     // menambahkan data destinasi
     public function store(StoreDestinasiRequest $request)
     {
-        $destinasi = Destinasi::create($request->validated());
+        $destinasi = Destinasi::create($request->only(['image', 'nama', 'deskripsi']));
         return response()->json($destinasi, 201);
     }
+
     // menampilkan data destinasi berdasarkan request
-    public function show(Destinasi $destinasi, $request)
+    public function show(Destinasi $destinasi)
     {
-        return response()->json($destinasi->load('destinasi'));
+        return response()->json($destinasi);
     }
 
     // mengupdate data destinasi
     public function update(UpdateDestinasiRequest $request, Destinasi $destinasi)
     {
-        $destinasi->update($request->validated());
+        $destinasi->update($request->only(['image', 'nama', 'deskripsi']));
         return response()->json($destinasi);
     }
-    //menhapus data destinasi
+
+    // menghapus data destinasi
     public function destroy(Destinasi $destinasi)
     {
         $destinasi->delete();
