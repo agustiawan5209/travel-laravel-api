@@ -18,6 +18,7 @@ return new class extends Migration
             $table->time('waktu')->comment('Waktu keberangkatan');
             $table->integer('kuota');
             $table->double('harga_tiket', 10, 2)->comment('Harga tiket per penumpang');
+            $table->enum('status', ['DONE','PENDING'])->comment('PENDING jika kuota masih tersedia, DONE jika kuota sudah habis')->default('PENDING');
             $table->timestamps();
         });
     }

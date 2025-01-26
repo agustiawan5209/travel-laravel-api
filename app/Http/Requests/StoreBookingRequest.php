@@ -25,7 +25,7 @@ class StoreBookingRequest extends FormRequest
             "user_id"=> "requeired|integer|exists:users,id",
             'jadwal_id' => 'required|integer|exists:jadwal_travels,id',
             'tanggal' => 'required|date',
-
+            'total_bayar' => 'nullable|numeric',
         ];
     }
 }

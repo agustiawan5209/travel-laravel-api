@@ -29,8 +29,16 @@ class BookingController extends Controller
             'user_id'=> $request->user_id,
             'jadwal_id'=> $request->jadwal_id,
             'tanggal'=> $request->tanggal,
-            'status'=> $request->status,
         ]);
+
+        $payment = new  PaymentController();
+        $payment_status = 'UNPAID';
+
+        if($request->total_bayar){
+            $payment_status = 'PAID';
+        }
+
+        $payments = $payment->store($booking->id, $request->tanggal,  $request->total_bayar, $request->status);
 
         return response()->json([
             'message'=> 'Pemesanan Tiket Travel Berhasil',

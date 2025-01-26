@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
-            $table->foreignId('jadwal_id')->constrained('jadwal_travels')->onDelete('cascade');
+            $table->foreignId('booking_id')->constrained('bookings')->cascadeOnDelete();
             $table->date('tanggal');
-            $table->enum('status', ['DONE','PENDING','CANCELED'])->comment('Status selesai ketika dibayar, menunggu, dibatalkan')->default('PENDING');
+            $table->double('total_bayar', 10,2);
+            $table->enum('status', ['PAID', 'UNPAID'])->default('UNPAID');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('payments');
     }
 };
