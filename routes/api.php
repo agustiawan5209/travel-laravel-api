@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\JadwalTravelController;
 
@@ -44,4 +45,16 @@ Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
     Route::post('/travel/{jadwalTravel}', [JadwalTravelController::class,'update']);
     Route::get('/travel/{jadwalTravel}', [JadwalTravelController::class,'show']);
     Route::delete('/travel/{jadwalTravel}', [JadwalTravelController::class,'destroy']);
+
+    // Router akses untuk model Booking || Admin
+     Route::get('/booking', [BookingController::class,'index']);
+     Route::post('/booking/{Booking}', [BookingController::class,'update']);
+    Route::get('/booking/{Booking}', [BookingController::class,'show']);
+    Route::delete('/booking/{Booking}', [BookingController::class,'destroy']);
+});
+
+
+Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
+    Route::post('/booking', [BookingController::class,'store']);
+    Route::post('/booking/{Booking}', [BookingController::class,'update']);
 });
