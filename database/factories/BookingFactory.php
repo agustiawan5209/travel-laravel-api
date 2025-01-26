@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Destinasi>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Booking>
  */
-class DestinasiFactory extends Factory
+class BookingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,7 @@ class DestinasiFactory extends Factory
     public function definition(): array
     {
         return [
-            'image' => $this->faker->imageUrl(),
-            'nama' => $this->faker->name(),
-            'deskripsi' => $this->faker->text(100),
+            //
         ];
     }
 }

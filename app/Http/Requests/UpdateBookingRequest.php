@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDestinasiRequest extends FormRequest
+class UpdateBookingRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,9 +22,9 @@ class UpdateDestinasiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
+            "user_id"=> "requeired|integer|exists:users,id",
+            'jadwal_id' => 'required|integer|exists:jadwal_travels,id',
+            'tanggal' => 'required|date',
         ];
     }
 }

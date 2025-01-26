@@ -20,13 +20,19 @@ class JadwalTravelController extends Controller
     {
         $validated = $request->validated();
         $jadwalTravel = JadwalTravel::create($validated);
-        return response()->json($jadwalTravel, 201);
+        return response()->json([
+            'message' => 'Jadwal Travel berhasil ditambahkan',
+            'data' => $jadwalTravel,
+        ], 201);
     }
 
     // Display the specified resource.
     public function show(JadwalTravel $jadwalTravel)
     {
-        return response()->json($jadwalTravel);
+        return response()->json([
+            'message' => 'Jadwal Travel',
+            'data' => $jadwalTravel,
+        ], 201);
     }
 
     // Update the specified resource in storage.
@@ -34,7 +40,10 @@ class JadwalTravelController extends Controller
     {
         $validated = $request->validated();
         $jadwalTravel->update($validated);
-        return response()->json($jadwalTravel);
+        return response()->json([
+            'message' => 'Jadwal Travel berhasil Update',
+            'data' => $jadwalTravel,
+        ], 201);
     }
 
     // Remove the specified resource from storage.

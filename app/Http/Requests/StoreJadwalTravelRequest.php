@@ -25,8 +25,9 @@ class StoreJadwalTravelRequest extends FormRequest
         return [
             'destinasi' => 'required|string|max:255',
             'tanggal' => 'required|date',
-            'jam' => 'required|date_format:H:i',
+            'waktu' => 'required|date_format:H:i',
             'harga_tiket' => 'required|numeric|min:0',
+            'kuota' => 'required|numeric|min:0',
         ];
     }
 
@@ -39,8 +40,8 @@ class StoreJadwalTravelRequest extends FormRequest
             'destinasi.max' => 'Destinasi maksimal 255 karakter.',
             'tanggal.required' => 'Tanggal wajib diisi.',
             'tanggal.date' => 'Tanggal harus berupa tanggal yang valid.',
-            'jam.required' => 'Jam wajib diisi.',
-            'jam.date_format' => 'Jam harus dalam format HH:MM.',
+            'waktu.required' => 'waktu wajib diisi.',
+            'waktu.date_format' => 'waktu harus dalam format HH:MM.',
             'harga_tiket.required' => 'Harga tiket wajib diisi.',
             'harga_tiket.numeric' => 'Harga tiket harus berupa angka.',
             'harga_tiket.min' => 'Harga tiket minimal 0.',

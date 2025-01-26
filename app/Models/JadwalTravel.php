@@ -9,10 +9,10 @@ class JadwalTravel extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['destinasi', 'tanggal', 'jam', 'harga_tiket', 'kuota'];
+    protected $fillable = ['destinasi', 'tanggal', 'waktu', 'harga_tiket', 'kuota'];
 
     protected $casts = [
-        'tanggal' => 'date',
-        'jam' => 'time',
+        // 'tanggal' => 'date',
+        'waktu' => 'datetime:H:i',
     ];
 }

@@ -11,7 +11,7 @@ class UpdateJadwalTravelRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,28 @@ class UpdateJadwalTravelRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'destinasi' => 'required|string|max:255',
+            'tanggal' => 'required|date',
+            'waktu' => 'required|date_format:H:i',
+            'harga_tiket' => 'required|numeric|min:0',
+            'kuota' => 'required|numeric|min:0',
+        ];
+    }
+
+    // Pesan kesalahan untuk validasi
+    public function messages() : array
+    {
+        return [
+            'destinasi.required' => 'Destinasi wajib diisi.',
+            'destinasi.string' => 'Destinasi harus berupa teks.',
+            'destinasi.max' => 'Destinasi maksimal 255 karakter.',
+            'tanggal.required' => 'Tanggal wajib diisi.',
+            'tanggal.date' => 'Tanggal harus berupa tanggal yang valid.',
+            'waktu.required' => 'waktu wajib diisi.',
+            'waktu.date_format' => 'waktu harus dalam format HH:MM.',
+            'harga_tiket.required' => 'Harga tiket wajib diisi.',
+            'harga_tiket.numeric' => 'Harga tiket harus berupa angka.',
+            'harga_tiket.min' => 'Harga tiket minimal 0.',
         ];
     }
 }

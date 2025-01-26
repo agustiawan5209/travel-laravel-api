@@ -22,13 +22,16 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => 'penumpang',
+            'role' => $request->role ?? 'Penumpang',
         ]);
+        $token = $user->createToken('token-name')->plainTextToken;
 
         return response()->json([
-            'message' => 'Penumpang berhasil didaftarkan!',
+            'message' => 'Login berhasil!',
+            'access_token' => $token,
+            'token_type' => 'Bearer',
             'user' => $user,
-        ], 201);
+        ],200);
     }
 
     /**
@@ -45,7 +48,11 @@ class AuthController extends Controller
 
         if(!Auth::attempt($request->only('email','password'))){
             return response()->json([
-                'message' => 'Login Gagal, Email atau Password Salah!'
+                'success' => false,
+                'message' => 'Email atau password salah',
+                'errors' => [
+                    'email' => 'Email atau password tidak cocok dengan data kami.'
+                ]
             ], 401);
         }
 
@@ -58,7 +65,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'user' => $user,
-        ]);
+        ],200);
     }
     /**
      * logout

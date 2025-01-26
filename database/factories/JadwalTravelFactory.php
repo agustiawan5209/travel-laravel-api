@@ -17,7 +17,11 @@ class JadwalTravelFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'destinasi' => $this->faker->name(),
+            'tanggal' => $this->faker->date(),
+            'waktu' => $this->faker->time(),
+            'harga_tiket' => $this->faker->randomNumber(),
+            'kuota' => $this->faker->randomNumber(),
         ];
     }
 }
