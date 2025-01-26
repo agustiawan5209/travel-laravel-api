@@ -19,4 +19,10 @@ class Booking extends Model
     public function payment(){
         return $this->hasOne(Payment::class, 'booking_id', 'id');
     }
+    public function user(){
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
+    public function jadwal(){
+        return $this->hasOne(JadwalTravel::class, 'id', 'jadwal_id');
+    }
 }

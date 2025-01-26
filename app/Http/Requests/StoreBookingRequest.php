@@ -22,10 +22,11 @@ class StoreBookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "user_id"=> "requeired|integer|exists:users,id",
-            'jadwal_id' => 'required|integer|exists:jadwal_travels,id',
+            "user_id"=> "required|integer|exists:users,id",
+            'jadwal_id' => 'required|integer',
             'tanggal' => 'required|date',
             'total_bayar' => 'nullable|numeric',
+            'status' => 'required|in:PAID,UNPAID,CANCELED',
         ];
     }
 }

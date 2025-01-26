@@ -32,29 +32,35 @@ Route::middleware('auth:sanctum')->group(function () {
 
 Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
     // Router akses untuk model Destinasi || Admin
-    Route::get('/destinasi', [DestinasiController::class,'index']);
-    Route::post('/destinasi', [DestinasiController::class,'store']);
-    Route::post('/destinasi/{destinasi}', [DestinasiController::class,'update']);
-    Route::get('/destinasi/{destinasi}', [DestinasiController::class,'show']);
-    Route::delete('/destinasi/{destinasi}', [DestinasiController::class,'destroy']);
+    Route::get('/destinasi', [DestinasiController::class, 'index']);
+    Route::post('/destinasi', [DestinasiController::class, 'store']);
+    Route::post('/destinasi/{destinasi}', [DestinasiController::class, 'update']);
+    Route::get('/destinasi/{destinasi}', [DestinasiController::class, 'show']);
+    Route::delete('/destinasi/{destinasi}', [DestinasiController::class, 'destroy']);
 
 
     // Router akses untuk model Jadwal Travel || Admin
-    Route::get('/travel', [JadwalTravelController::class,'index']);
-    Route::post('/travel', [JadwalTravelController::class,'store']);
-    Route::post('/travel/{jadwalTravel}', [JadwalTravelController::class,'update']);
-    Route::get('/travel/{jadwalTravel}', [JadwalTravelController::class,'show']);
-    Route::delete('/travel/{jadwalTravel}', [JadwalTravelController::class,'destroy']);
+    Route::post('/travel', [JadwalTravelController::class, 'store']);
+    Route::post('/travel/{jadwalTravel}', [JadwalTravelController::class, 'update']);
+    Route::delete('/travel/{jadwalTravel}', [JadwalTravelController::class, 'destroy']);
 
-    // Router akses untuk model Booking || Admin
-     Route::get('/booking', [BookingController::class,'index']);
-     Route::post('/booking/{Booking}', [BookingController::class,'update']);
-    Route::get('/booking/{Booking}', [BookingController::class,'show']);
-    Route::delete('/booking/{Booking}', [BookingController::class,'destroy']);
+
+
+    Route::post('/booking/{Booking}', [BookingController::class, 'update']);
+    Route::delete('/booking/{Booking}', [BookingController::class, 'destroy']);
 });
 
 
-Route::middleware(['auth:sanctum', 'role:Admin'])->group(function () {
-    Route::post('/booking', [BookingController::class,'store']);
-    Route::post('/booking/{Booking}', [BookingController::class,'update']);
+// Get travel
+Route::get('/travel', [JadwalTravelController::class, 'index']);
+Route::get('/travel/{jadwalTravel}', [JadwalTravelController::class, 'show']);
+
+
+Route::middleware(['auth:sanctum', 'role:penumpang'])->group(function () {
+    // Router akses untuk model Booking || Admin
+    // Route::get('/bookingbyd', [BookingController::class, 'getBookingById']);
+    Route::get('/booking', [BookingController::class, 'index']);
+    Route::get('/booking/{Booking}', [BookingController::class, 'show']);
+    Route::post('/checkout', [BookingController::class, 'store']);
+    Route::post('/booking/{Booking}', [BookingController::class, 'update']);
 });
